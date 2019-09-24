@@ -11,8 +11,8 @@ script:
 # Docker Image
 - |
   echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USER}" --password-stdin
-  docker build -t "gitopsdemo/app-b:${TRAVIS_COMMIT}" .
-  docker push "gitopsdemo/app-b:${TRAVIS_COMMIT}"
+  docker build -t "ch1aki/app-b:${TRAVIS_COMMIT}" .
+  docker push "ch1aki/app-b:${TRAVIS_COMMIT}"
 
 # Deploy Request
 - |
@@ -42,8 +42,8 @@ script:
   cd app-b
   for f in overlays/*/image.yaml
   do
-    PREV_COMMIT=$(grep -oP "(?<=image: gitopsdemo/app-b:).+$" "${f}")
-    sed -i -e "s!image: gitopsdemo/app-b:.\+\$!image: gitopsdemo/app-b:${TRAVIS_COMMIT}!" "${f}"
+    PREV_COMMIT=$(grep -oP "(?<=image: ch1aki/app-b:).+$" "${f}")
+    sed -i -e "s!image: ch1aki/app-b:.\+\$!image: ch1aki/app-b:${TRAVIS_COMMIT}!" "${f}"
   done
 
   COMMIT_MSG="ch1aki/app-b/${PREV_COMMIT}...${TRAVIS_COMMIT}"
