@@ -1,4 +1,4 @@
-module github.com/gitops-demo/app-b
+module github.com/ch1aki/app-b
 
 go 1.12
 
